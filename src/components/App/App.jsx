@@ -11,6 +11,19 @@ class App extends Component {
     filter: '',
   };
 
+  componentDidUpdate(prevProp, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('saveContacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
+  componentDidMount() {
+    const saveContacts = localStorage.getItem('saveContacts');
+    const contacts = JSON.parse(saveContacts);
+
+    this.setState({ contacts });
+  }
+
   getNewContact = ({ name, number, id }) => {
     const contact = {
       id: nanoid(),
@@ -19,7 +32,7 @@ class App extends Component {
     };
 
     const findContact = this.state.contacts.find(
-      user => user.name === contact.name
+      user => user.name === contact.name && user.number === contact.number
     );
 
     if (findContact) {
