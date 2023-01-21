@@ -4,6 +4,7 @@ import ContactForm from 'components/AddContacts';
 import ContactsList from 'components/ContactsList';
 import FilterContacts from 'components/FilterContacts';
 import { nanoid } from 'nanoid';
+import toast, { Toaster } from 'react-hot-toast';
 
 class App extends Component {
   state = {
@@ -36,8 +37,10 @@ class App extends Component {
     );
 
     if (findContact) {
-      alert(`${contact.name} is already in contacts!`);
+      toast.error(`${contact.name} is already in contacts!`);
       return;
+    } else {
+      toast.success(`${contact.name} successfully added!`);
     }
 
     this.setState(prevState => ({
@@ -84,6 +87,7 @@ class App extends Component {
           contacts={visibleContacts}
           onDeleteContact={this.deleteContact}
         />
+        <Toaster position="top-right" />
       </Container>
     );
   }
