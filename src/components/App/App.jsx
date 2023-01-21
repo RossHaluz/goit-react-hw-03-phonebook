@@ -55,13 +55,11 @@ class App extends Component {
   };
 
   getFilterContacts = () => {
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
 
     const normilize = filter.toLocaleLowerCase();
-    const getContacts = localStorage.getItem('saveContacts');
-    const saveContacts = JSON.parse(getContacts);
 
-    return saveContacts.filter(contact =>
+    return contacts.filter(contact =>
       contact.name.toLocaleLowerCase().includes(normilize)
     );
   };
