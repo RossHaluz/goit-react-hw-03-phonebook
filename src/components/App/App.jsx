@@ -33,7 +33,7 @@ class App extends Component {
     };
 
     const findContact = this.state.contacts.find(
-      user => user.name === contact.name && user.number === contact.number
+      user => user.number === contact.number
     );
 
     if (findContact) {
