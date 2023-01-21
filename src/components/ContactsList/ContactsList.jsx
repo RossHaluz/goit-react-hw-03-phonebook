@@ -1,14 +1,26 @@
-const ContactsList = ({ contacts }) => {
+import {
+  Contacts,
+  ContactsItem,
+  ContactsItemName,
+  ContactsItemNumber,
+  ContactBtnDelete,
+} from './ContactsList.styled';
+
+const ContactsList = ({ contacts, onDeleteContact }) => {
   return (
-    <ul>
-      {contacts.map(({ name, number }) => {
+    <Contacts>
+      {contacts.map(({ id, name, number }) => {
         return (
-          <li key={number}>
-            <b>{name}</b>: {number}
-          </li>
+          <ContactsItem key={id}>
+            <ContactsItemName>{name}:</ContactsItemName>
+            <ContactsItemNumber> {number}</ContactsItemNumber>
+            <ContactBtnDelete type="button" onClick={() => onDeleteContact(id)}>
+              Delete
+            </ContactBtnDelete>
+          </ContactsItem>
         );
       })}
-    </ul>
+    </Contacts>
   );
 };
 
