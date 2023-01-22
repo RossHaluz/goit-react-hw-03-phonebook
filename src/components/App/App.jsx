@@ -20,7 +20,7 @@ class App extends Component {
 
   componentDidMount() {
     const saveContacts = localStorage.getItem('saveContacts');
-    const contacts = JSON.parse(saveContacts);
+    const contacts = JSON.parse(saveContacts) ?? [];
 
     this.setState({ contacts });
   }
